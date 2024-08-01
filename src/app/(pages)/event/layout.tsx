@@ -1,9 +1,13 @@
 "use client";
-import { useEffect } from "react";
 
+import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
 
-export default function Home() {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   useEffect(() => {
     const lenis = new Lenis();
     lenis.on("scroll", (e: any) => {
@@ -17,5 +21,6 @@ export default function Home() {
 
     requestAnimationFrame(raf);
   }, []);
-  return <div></div>;
+
+  return <div className="flex flex-row gap-0">{children}</div>;
 }
