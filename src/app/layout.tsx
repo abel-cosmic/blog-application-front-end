@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import { ReactQueryClientProvider } from "@/configs/provider/react-query-provider";
 import { Toaster } from "@/components/ui/toaster";
 import AuthRedirect from "@/configs/provider/authenticated";
-import { NextAuthClientProvider } from "@/configs/provider/next-auth";
 
 const fontSans = FontSans({
   subsets: ["latin"],
