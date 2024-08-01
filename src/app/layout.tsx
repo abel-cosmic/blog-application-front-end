@@ -30,14 +30,14 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <NextAuthClientProvider>
-          {/* <AuthRedirect> */}
-          <ReactQueryClientProvider>
-            <Toaster />
-            {children}
-          </ReactQueryClientProvider>
-          {/* </AuthRedirect> */}
-        </NextAuthClientProvider>
+        {/* <NextAuthClientProvider> */}
+        {/* <AuthRedirect> */}
+        <ReactQueryClientProvider>
+          <Toaster />
+          {children}
+        </ReactQueryClientProvider>
+        {/* </AuthRedirect> */}
+        {/* </NextAuthClientProvider> */}
       </body>
     </html>
   );
