@@ -1,4 +1,11 @@
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { toast } from "@/components/ui/use-toast";
+import { signUpSchema } from "@/types/schema/auth";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
+import { useForm } from "react-hook-form";
+import z from "zod";
 import {
   Form,
   FormControl,
@@ -7,25 +14,18 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { toast } from "@/components/ui/use-toast";
-import { loginSchema } from "@/types/schema/auth";
-import Link from "next/link";
-import { useForm } from "react-hook-form";
-import z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 
-export default function LoginForm() {
-  const form = useForm<z.infer<typeof loginSchema>>({
-    resolver: zodResolver(loginSchema),
+export default function SignUpForm() {
+  const form = useForm<z.infer<typeof signUpSchema>>({
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
+      name: "",
       email: "",
       password: "",
     },
   });
 
-  function onSubmit(data: z.infer<typeof loginSchema>) {
+  function onSubmit(data: z.infer<typeof signUpSchema>) {
     toast({
       title: "You submitted the following values:",
       description: (
@@ -35,7 +35,6 @@ export default function LoginForm() {
       ),
     });
   }
-
   return (
     <Form {...form}>
       <form
@@ -43,11 +42,24 @@ export default function LoginForm() {
         className="mx-auto grid  gap-6"
       >
         <div className="grid gap-2 text-center">
-          <h1 className="text-3xl font-bold">Login</h1>
+          <h1 className="text-3xl font-bold">Sign Up</h1>
           <p className="text-balance text-muted-foreground">
-            Enter your email below to login to your account
+            Enter your Credentials and password to Register
           </p>
         </div>
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem className="grid gap-2">
+              <FormLabel htmlFor="email">Nick Name</FormLabel>
+              <FormControl>
+                <Input id="email" type="text" required {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           control={form.control}
           name="email"
@@ -72,19 +84,9 @@ export default function LoginForm() {
           name="password"
           render={({ field }) => (
             <FormItem className="grid gap-2">
-              <div className="grid gap-2">
-                <div className="flex items-center">
-                  <FormLabel htmlFor="password">Password</FormLabel>
-                  <Link
-                    href="/forgot-password"
-                    className="ml-auto inline-block text-sm underline"
-                  >
-                    Forgot your password?
-                  </Link>
-                </div>
-              </div>
+              <FormLabel htmlFor="email">Password</FormLabel>
               <FormControl>
-                <Input id="password" type="password" {...field} required />
+                <Input id="email" type="password" required {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -96,9 +98,9 @@ export default function LoginForm() {
           </Button>
         </div>
         <div className="mt-4 text-center text-sm">
-          Don&apos;t have an account?{" "}
-          <Link href="/auth/sign-up" className="underline">
-            Sign up
+          Already have an account?{" "}
+          <Link href="/auth/sign-in" className="underline">
+            Sign in
           </Link>
         </div>
       </form>
