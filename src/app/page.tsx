@@ -2,6 +2,8 @@
 import { useEffect } from "react";
 
 import Lenis from "@studio-freight/lenis";
+import MenuBar from "@/components/custom/nav/menu-bar";
+import MobileNav from "@/components/custom/nav/mobile-nav";
 
 export default function Home() {
   useEffect(() => {
@@ -17,5 +19,10 @@ export default function Home() {
 
     requestAnimationFrame(raf);
   }, []);
-  return <div></div>;
+  return (
+    <>
+      <MobileNav />
+      <MenuBar />
+    </>
+  );
 }
