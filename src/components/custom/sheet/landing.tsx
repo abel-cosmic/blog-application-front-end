@@ -43,7 +43,7 @@ const LandingSheet = () => {
       </div>
       <div className="flex flex-col gap-6 py-8">
         {links.map((link, index) => (
-          <NavLinkComponent name={link.name} href={link.href} />
+          <NavLinkComponent key={index} name={link.name} href={link.href} />
         ))}
       </div>
       <SheetDescription>
