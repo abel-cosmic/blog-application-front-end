@@ -17,10 +17,7 @@ export function Sidebar() {
     <div className="hidden border-r max-w-xs bg-muted md:block">
       <div className="flex h-full max-h-[85vh]  min-w-60 flex-col gap-2">
         <div className="flex h-14 gap-4 items-center border-b px-4 py-10 lg:h-[60px] lg:px-6">
-          <Link
-            href="/dashboard"
-            className="flex items-center gap-2 font-semibold"
-          >
+          <Link href="/" className="flex items-center gap-2 font-semibold">
             <Image src={logo} alt="Logo" width={100} height={100} />
           </Link>
           <Button variant="outline" size="icon" className="ml-auto h-8 w-8">

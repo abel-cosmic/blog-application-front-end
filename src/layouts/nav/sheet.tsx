@@ -11,7 +11,7 @@ import {
 import { Menu, Settings } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "/public/img/logo.png";
+import logo from "/public/img/logo-dark.png";
 import { usePathname } from "next/navigation";
 import sidebarItems from "@/configs/objects/side-bar";
 
@@ -31,13 +31,12 @@ export function SidebarSheet() {
           side={"left"}
         >
           <div className="flex flex-col gap-4 py-8">
-            <SheetHeader className="flex flex-row gap-2  items-center justify-center border-b  py-4">
+            <SheetHeader className="flex flex-row gap-2  items-start justify-start border-b  py-4">
               <Link
-                href="/dashboard"
+                href="/"
                 className="flex items-end justify-centers font-semibold"
               >
                 <Image src={logo} alt="Logo" width={60} height={60} />
-                <div className="text-sm">Lease Calculator</div>
               </Link>
             </SheetHeader>
             {sidebarItems.map(
