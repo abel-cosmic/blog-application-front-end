@@ -3,9 +3,8 @@ import Link from "next/link";
 import { Bell, LogOut, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import logo from "/public/img/logo.png";
+import logo from "/public/img/logo-dark.png";
 import { usePathname, useRouter } from "next/navigation";
-import { signOut } from "next-auth/react";
 import { Key } from "react";
 import sidebarItems from "@/configs/objects/side-bar";
 import { Badge } from "@/components/ui/badge";
@@ -15,15 +14,14 @@ export function Sidebar() {
   const navigate = useRouter();
 
   return (
-    <div className="hidden border-r max-w-xs bg-muted/40 md:block">
-      <div className="flex h-full max-h-[85vh] flex-col gap-2">
+    <div className="hidden border-r max-w-xs bg-muted md:block">
+      <div className="flex h-full max-h-[85vh]  min-w-60 flex-col gap-2">
         <div className="flex h-14 gap-4 items-center border-b px-4 py-10 lg:h-[60px] lg:px-6">
           <Link
             href="/dashboard"
             className="flex items-center gap-2 font-semibold"
           >
-            <Image src={logo} alt="Logo" width={60} height={60} />
-            <h1 className="text-sm font-bold">Lease Calculator</h1>
+            <Image src={logo} alt="Logo" width={100} height={100} />
           </Link>
           <Button variant="outline" size="icon" className="ml-auto h-8 w-8">
             <Bell className="h-4 w-4" />
@@ -67,24 +65,13 @@ export function Sidebar() {
               }
             )}
           </nav>
+
           <div className="flex flex-col w-full">
-            <div className="grid items-start px-2s text-sm font-medium lg:px-4 w-full hover:cursor-pointer">
-              <div
-                className={`flex items-center gap-3 rounded-lg px-3 py-4 transition-all ease-linear text-muted-foreground hover:text-primary`}
-                onClick={() => {
-                  signOut();
-                  navigate.push("/");
-                }}
-              >
-                <LogOut className="h-4 w-4" />
-                Logout
-              </div>
-            </div>
             <div className="grid items-start px-2s text-sm font-medium lg:px-4 w-full">
               <Link
-                href="/dashboard/setting"
+                href="/admin/setting"
                 className={`flex items-center gap-3 rounded-lg px-3 py-4 transition-all ease-linear ${
-                  pathname === "/dashboard/setting"
+                  pathname === "/admin/setting"
                     ? "dark:bg-white dark:text-black  bg-primary text-background"
                     : "text-muted-foreground hover:text-primary"
                 }`}
@@ -93,8 +80,20 @@ export function Sidebar() {
                 Settings
               </Link>
             </div>
+            <div className="grid items-start px-2s text-sm font-medium lg:px-4 w-full hover:cursor-pointer">
+              <div
+                className={`flex items-center gap-3 rounded-lg px-3 py-4 transition-all ease-linear text-muted-foreground hover:text-primary`}
+                onClick={() => {
+                  navigate.push("/");
+                }}
+              >
+                <LogOut className="h-4 w-4" />
+                Logout
+              </div>
+            </div>
           </div>
         </div>
+        s
       </div>
     </div>
   );
