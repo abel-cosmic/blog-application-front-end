@@ -11,10 +11,12 @@ const OverviewCard: FC<CardComponentProps> = ({
   const Icon = icon;
 
   return (
-    <Card className="w-full min-w-60 p-8">
+    <Card className="w-full min-w-60 p-8 bg-transparent border border-black/20">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium">{title}</CardTitle>
-        <Icon className="h-8 w-8 text-primary" />
+        <div className="p-2 bg-primary rounded-full">
+          <Icon className="h-6 w-6 text-white" />
+        </div>
       </CardHeader>
       <CardContent>
         <div className="text-2xl font-bold">{value}</div>
