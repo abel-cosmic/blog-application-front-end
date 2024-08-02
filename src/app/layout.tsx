@@ -4,8 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ReactQueryClientProvider } from "@/configs/provider/react-query-provider";
 import { Toaster } from "@/components/ui/toaster";
-import AuthRedirect from "@/configs/provider/authenticated";
-import Footer from "@/components/custom/footer";
+// import AuthRedirect from "@/configs/provider/authenticated";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -38,7 +37,6 @@ export default function RootLayout({
         </ReactQueryClientProvider>
         {/* </AuthRedirect> */}
         {/* </NextAuthClientProvider> */}
-        <Footer />
       </body>
     </html>
   );
