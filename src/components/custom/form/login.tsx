@@ -14,15 +14,8 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { jwtDecode } from "jwt-decode";
-import { useSignInMutation } from "@/hooks/auth";
-import { useRouter } from "next/navigation";
-import { Loader2 } from "lucide-react";
 
 export default function LoginForm() {
-  const { mutate, isPending, data: response, isSuccess } = useSignInMutation();
-  const navigate = useRouter();
-
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -31,36 +24,14 @@ export default function LoginForm() {
     },
   });
 
-  async function onSubmit(data: z.infer<typeof loginSchema>) {
-    mutate(data, {
-      onSuccess: (response) => {
-        // Assuming response contains the token
-        const { token } = response;
-
-        // Decode the token
-        const decodedToken: any = jwtDecode(token);
-
-        // Check the role
-        if (decodedToken.role === "ADMIN") {
-          // Redirect to admin route if role is ADMIN
-          navigate.push("/admin");
-        } else {
-          // Redirect to the default route
-          navigate.push("/");
-        }
-
-        form.reset();
-        toast({
-          title: "Success",
-          description: "Welcome to Our Blog",
-        });
-      },
-      onError: (error) => {
-        toast({
-          title: "Error",
-          description: error.message,
-        });
-      },
+  function onSubmit(data: z.infer<typeof loginSchema>) {
+    toast({
+      title: "You submitted the following values:",
+      description: (
+        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+        </pre>
+      ),
     });
   }
 
@@ -120,7 +91,7 @@ export default function LoginForm() {
         />
         <div className="grid gap-4">
           <Button type="submit" className="w-full">
-            {isPending ? <Loader2 className="animate-spin" /> : "Log In"}
+            Login
           </Button>
         </div>
         <div className="mt-4 text-center text-sm">
