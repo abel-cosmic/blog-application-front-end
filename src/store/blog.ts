@@ -8,6 +8,7 @@ export const useBlogStore = create<blogStore>((set) => ({
     content: "",
     description: "",
     date: "",
+    location: "",
     createdAt: "",
     updatedAt: "",
   },

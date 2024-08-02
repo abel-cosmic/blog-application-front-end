@@ -9,9 +9,10 @@ import BlogCard from "@/components/custom/card/blog";
 import Footer from "@/components/custom/footer";
 import NewsLetter from "@/components/custom/banner/news-lettter";
 import FAQBanner from "@/components/custom/banner/faq";
-import { blogItems } from "@/configs/objects/blog";
+import { useGetAllBlogQuery } from "@/hooks/blog";
 
 export default function Home() {
+  const { data } = useGetAllBlogQuery();
   useEffect(() => {
     const lenis = new Lenis();
     lenis.on("scroll", (e: any) => {
@@ -31,18 +32,27 @@ export default function Home() {
       <MobileNav />
       <MenuBar />
       <div className="flex flex-col items-center justify-center px-10 gap-8 md:flex-row md:flex-wrap md:gap-4">
-        {blogItems.map((item, index) => (
-          <BlogCard
-            key={index}
-            title={item.title}
-            description={item.description}
-            content={item.content}
-            image={item.image}
-            link={item.link}
-            location={item.location}
-            date={item.date}
-          />
-        ))}
+        {data && data.length > 0 ? (
+          data.map((item, index) => (
+            <BlogCard
+              key={index}
+              title={item.title}
+              description={item.description}
+              content={item.content}
+              image={item.image}
+              link={item.link}
+              location={item.location}
+              date={item.date}
+            />
+          ))
+        ) : (
+          <div className="text-center p-4">
+            <h2 className="text-xl font-bold">No Blogs Available</h2>
+            <p className="text-gray-500">
+              There are no blogs at the moment. Please check back later.
+            </p>
+          </div>
+        )}
       </div>
       <NewsLetter />
       <FAQBanner />

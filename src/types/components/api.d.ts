@@ -6,6 +6,7 @@ type Blog = {
   description: string;
   content: string;
   date: string;
+  location: string;
   link: string;
   createdAt: string;
   updatedAt: string;
