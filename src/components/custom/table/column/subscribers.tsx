@@ -1,11 +1,9 @@
 "use client";
 import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
-import { BlogAction } from "../action/blog";
+import { SubscribersAction } from "../action/subscriber";
 
-import Image from "next/image";
-
-export const blogColumns: ColumnDef<BlogTable>[] = [
+export const subscriberColumns: ColumnDef<subscriberTable>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -28,31 +26,20 @@ export const blogColumns: ColumnDef<BlogTable>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "image",
-    header: () => <div className="text-left">image</div>,
-    cell: ({ row }) => (
-      <Image
-        className="text-left font-medium line-clamp-1 rounded-md w-12 h-12 object-cover"
-        src={row.getValue("image")}
-        alt={row.getValue("title")}
-      />
-    ),
-  },
-  {
-    accessorKey: "title",
-    header: () => <div className="text-left">title</div>,
+    accessorKey: "email",
+    header: () => <div className="text-left">email</div>,
     cell: ({ row }) => (
       <div className="text-left font-medium line-clamp-1">
-        {row.getValue("title")}
+        {row.getValue("email")}
       </div>
     ),
   },
   {
-    accessorKey: "description",
-    header: () => <div className="text-left">description</div>,
+    accessorKey: "createdAt",
+    header: () => <div className="text-left">created at</div>,
     cell: ({ row }) => (
       <div className="text-left font-medium line-clamp-1">
-        {row.getValue("description")}
+        {row.getValue("createdAt")}
       </div>
     ),
   },
@@ -60,7 +47,7 @@ export const blogColumns: ColumnDef<BlogTable>[] = [
     id: "actions",
     header: () => <div className="text-left">Actions</div>,
     cell: ({ row }) => {
-      return <BlogAction row={row} />;
+      return <SubscribersAction row={row} />;
     },
   },
 ];

@@ -1,4 +1,4 @@
-import { Files, Home, User, Users } from "lucide-react";
+import { Files, Home, Users } from "lucide-react";
 
 const sidebarItems = [
   {
@@ -12,14 +12,9 @@ const sidebarItems = [
     icon: Files,
   },
   {
-    href: "/admin/users",
-    label: "Manage",
-    icon: Users,
-  },
-  {
     href: "/admin/subscribers",
     label: "Subscribers",
-    icon: User,
+    icon: Users,
   },
 ];
 

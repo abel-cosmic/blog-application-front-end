@@ -8,3 +8,9 @@ type BlogTable = {
   location: String;
   date: String;
 };
+
+type subscriberTable = {
+  id: number;
+  email: string;
+  createdAt: string;
+};
