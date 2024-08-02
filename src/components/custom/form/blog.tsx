@@ -47,7 +47,15 @@ export function BlogForm() {
     formData.append("link", data.link);
     formData.append("location", data.location);
     formData.append("date", data.date);
-
+    console.log("data", {
+      title: data.title,
+      description: data.description,
+      content: data.content,
+      link: data.link,
+      location: data.location,
+      date: data.date,
+      img: selectedFile,
+    });
     if (selectedFile) {
       formData.append("image", selectedFile);
     }

@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { blogItems } from "@/configs/objects/blog";
-import Image from "next/image"
+import Image from "next/image";
 
 export default function BlogDetail() {
   const { id } = useParams();
@@ -17,7 +17,7 @@ export default function BlogDetail() {
   return (
     <div className="md:px-20 px-10 gap-4 md:gap-10 flex flex-col md:flex-row md:items-center max-md:pt-20">
       <Image
-        src={blog.image.src}
+        src={blog.image}
         alt={blog.title}
         width={0}
         height={0}

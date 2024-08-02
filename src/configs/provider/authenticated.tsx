@@ -1,19 +1,19 @@
 "use client";
 
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "@/components/ui/use-toast";
 import { jwtDecode } from "jwt-decode";
 
 const AuthRedirect = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
+  const [isChecking, setIsChecking] = useState(true);
 
   useEffect(() => {
     const checkAuthorization = () => {
-      // Retrieve token from local storage or cookies
-      const token = localStorage.getItem("token") || ""; // Adjust based on how you store the token
+      const tokenString = localStorage.getItem("token");
 
-      if (!token) {
+      if (!tokenString) {
         // No token exists
         toast({
           title: "Authorization Error",
@@ -26,29 +26,41 @@ const AuthRedirect = ({ children }: { children: ReactNode }) => {
 
       try {
         // Decode the token
-        const decodedToken: any = jwtDecode(token);
-        console.log(decodedToken);
-        if (decodedToken.role !== "ADMIN") {
-          toast({
-            title: "Authorization Error",
-            description: "You are not authorized to view this page.",
-            variant: "destructive",
-          });
-          router.push("/");
+        console.log(
+          "🚀 ~ file: authenticated.tsx ~ line 31 ~ checkAuthorization ~ tokenString",
+          tokenString
+        );
+        if (tokenString) {
+          const tokenObject = JSON.parse(tokenString);
+          const token = tokenObject.token;
+          const decodedToken: any = jwtDecode(token);
+          console.log(
+            "🚀 ~ file: authenticated.tsx ~ line 37 ~ checkAuthorization ~ decodedToken",
+            decodedToken
+          );
+
+          if (decodedToken.role !== "ADMIN") {
+            toast({
+              title: "Authorization Error",
+              description: "You are not authorized to view this page.",
+              variant: "destructive",
+            });
+            router.push("/");
+          }
         }
       } catch (error) {
-        // Handle token decoding errors
-        toast({
-          title: "Authorization Error",
-          description: "Invalid token.",
-          variant: "destructive",
-        });
         router.push("/");
+      } finally {
+        setIsChecking(false);
       }
     };
 
     checkAuthorization();
   }, [router]);
+
+  if (isChecking) {
+    return null;
+  }
 
   return <>{children}</>;
 };

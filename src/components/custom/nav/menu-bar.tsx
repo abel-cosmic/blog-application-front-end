@@ -48,7 +48,7 @@ const MenuBar = () => {
           variant="outline"
           className="w-full"
           onClick={() => {
-            navigate.push("/auth/sign-up");
+            navigate.push("/auth/sign-in");
           }}
         >
           Sign In

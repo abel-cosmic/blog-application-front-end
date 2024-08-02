@@ -35,6 +35,8 @@ export const blogColumns: ColumnDef<BlogTable>[] = [
         className="text-left font-medium line-clamp-1 rounded-md w-12 h-12 object-cover"
         src={row.getValue("image")}
         alt={row.getValue("title")}
+        width={0}
+        height={0}
       />
     ),
   },

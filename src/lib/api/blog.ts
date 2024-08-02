@@ -1,6 +1,7 @@
 import { blogSchema } from "@/types/schema/blog";
 import { z } from "zod";
 import axiosInstance from "../axios";
+import { jwtDecode } from "jwt-decode";
 
 export const getAllBlog = async (): Promise<Blog[]> => {
   try {
@@ -35,6 +36,9 @@ export const deleteBlogById = async (id: number): Promise<boolean> => {
 export interface mutateBlogResponse extends z.infer<typeof blogSchema> {}
 export const createBlog = async (formData: FormData): Promise<Blog | null> => {
   try {
+    const token = localStorage.getItem("token") || "";
+    const decodedToken: any = jwtDecode(token);
+    formData.append("authorId", decodedToken.id);
     const response = await axiosInstance.post("/api/blogs", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
