@@ -1,4 +1,4 @@
-import { Files, Home, Users } from "lucide-react";
+import { BookCopy, Files, Home, PartyPopper, Users } from "lucide-react";
 
 const sidebarItems = [
   {
@@ -10,6 +10,16 @@ const sidebarItems = [
     href: "/admin/blogs",
     label: "Blogs",
     icon: Files,
+  },
+  {
+    href: "/admin/events",
+    label: "Events",
+    icon: PartyPopper,
+  },
+  {
+    href: "/admin/registrations",
+    label: "Registrations",
+    icon: BookCopy,
   },
   {
     href: "/admin/subscribers",
