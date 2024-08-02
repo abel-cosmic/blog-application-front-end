@@ -2,6 +2,8 @@
 
 import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
+import MobileNav from "@/components/custom/nav/mobile-nav";
+import MenuBar from "@/components/custom/nav/menu-bar";
 
 export default function RootLayout({
   children,
@@ -22,5 +24,11 @@ export default function RootLayout({
     requestAnimationFrame(raf);
   }, []);
 
-  return <div className="flex flex-row gap-0">{children}</div>;
+  return (
+    <div className="flex flex-col gap-10">
+      <MobileNav />
+      <MenuBar />
+      {children}
+    </div>
+  );
 }

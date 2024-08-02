@@ -99,7 +99,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 max-md:pt-20">
       <MobileNav />
       <MenuBar />
       <div className="flex flex-col items-center justify-center px-10 gap-8 md:flex-row md:flex-wrap md:gap-4">

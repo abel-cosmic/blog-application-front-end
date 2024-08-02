@@ -6,8 +6,10 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import logodark from "/public/img/logo-dark.png";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const MenuBar = () => {
+  const navigate = useRouter();
   return (
     <Menubar className="max-md:hidden w-full flex flex-row justify-between px-12 items-center  sticky top-0 right-0 left-0 py-10 bg-white/90 backdrop-blur-md z-50">
       <Image
@@ -15,7 +17,10 @@ const MenuBar = () => {
         alt={"logo of blog site"}
         width={0}
         height={0}
-        className="w-24 object-contain "
+        className="w-24 object-contain cursor-pointer"
+        onClick={() => {
+          navigate.push("/");
+        }}
       />
       <div className="flex flex-row gap-2">
         <MenubarMenu>
