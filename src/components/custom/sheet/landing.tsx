@@ -22,7 +22,7 @@ const LandingSheet = () => {
     { name: "Privacy Policy", href: "/privacy" },
   ];
   return (
-    <SheetContent className="py-20 flex flex-col gap-2 backdrop-blur-md bg-white/50">
+    <SheetContent className="py-20 flex flex-col gap-2 backdrop-blur-sm bg-white/90">
       <SheetHeader className="flex flex-col gap-2 py-2 items-start">
         <Image
           src={logodark}

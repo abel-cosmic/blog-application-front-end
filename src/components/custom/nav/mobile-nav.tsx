@@ -8,7 +8,7 @@ import LandingSheet from "../sheet/landing";
 
 const MobileNav = () => {
   return (
-    <div className="md:hidden flex flex-row w-full justify-between px-10 py-8 backdrop-blur-md bg-background ">
+    <div className="md:hidden flex flex-row w-full justify-between px-10 py-4 backdrop-blur-md bg-background ">
       <Image
         src={logodark}
         alt={"logo of blog site"}
