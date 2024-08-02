@@ -1,10 +1,10 @@
 import { subscriptionSchema } from "@/types/schema/subscription";
-import axios from "axios";
 import { z } from "zod";
+import axiosInstance from "../axios";
 
 export const getAllSubscribers = async (): Promise<Subscription[]> => {
   try {
-    const response = await axios.get("/api/subscriptions");
+    const response = await axiosInstance.get("/api/subscriptions");
     return response.data;
   } catch (error) {
     console.error("Error fetching subscriptions:", error);
@@ -16,7 +16,7 @@ export const getSubscriberById = async (
   id: number
 ): Promise<Subscription | null> => {
   try {
-    const response = await axios.get(`/api/subscriptions/${id}`);
+    const response = await axiosInstance.get(`/api/subscriptions/${id}`);
     return response.data;
   } catch (error) {
     console.error(`Error fetching subscriptions with id ${id}:`, error);
@@ -28,7 +28,7 @@ export const deleteSubscribersById = async (
   id: number
 ): Promise<string | null> => {
   try {
-    const response = await axios.delete(`/api/subscriptions/${id}`);
+    const response = await axiosInstance.delete(`/api/subscriptions/${id}`);
     return response.data;
   } catch (error) {
     console.error(`Error deleting subscriptions with id ${id}:`, error);
@@ -42,7 +42,11 @@ export const createSubscriber = async (
   subscription: mutateSubscriptionResponse
 ): Promise<Subscription | null> => {
   try {
-    const response = await axios.post("/api/subscriptions", subscription);
+    const response = await axiosInstance.post(
+      "/api/subscriptions",
+      subscription
+    );
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Error creating subscriptions:", error);
@@ -55,7 +59,10 @@ export const updateSubscriber = async (
   subscription: mutateSubscriptionResponse
 ): Promise<Subscription | null> => {
   try {
-    const response = await axios.put(`/api/subscriptions/${id}`, subscription);
+    const response = await axiosInstance.put(
+      `/api/subscriptions/${id}`,
+      subscription
+    );
     return response.data;
   } catch (error) {
     console.error("Error creating subscriptions:", error);
