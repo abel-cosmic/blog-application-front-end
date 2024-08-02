@@ -42,14 +42,6 @@ const NewsLetter = () => {
         });
       },
     });
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
   }
   return (
     <Form {...form}>
@@ -70,7 +62,7 @@ const NewsLetter = () => {
               control={form.control}
               name="email"
               render={({ field }) => (
-                <FormItem className="">
+                <FormItem className="w-2/3">
                   <FormControl>
                     <Input
                       {...field}
@@ -84,7 +76,7 @@ const NewsLetter = () => {
               )}
             />
 
-            <Button variant="subscribe">
+            <Button variant="subscribe" className="min-w-32">
               {isPending ? <Loader2 className="animate-spin" /> : "Subscribe"}
             </Button>
           </div>
