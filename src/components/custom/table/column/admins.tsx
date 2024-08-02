@@ -2,9 +2,10 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { SubscribersAction } from "../action/subscriber";
+import { Badge } from "@/components/ui/badge";
 import moment from "moment";
 
-export const subscriberColumns: ColumnDef<subscriberTable>[] = [
+export const adminsColumns: ColumnDef<AdminsTable>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -34,6 +35,36 @@ export const subscriberColumns: ColumnDef<subscriberTable>[] = [
         {row.getValue("email")}
       </div>
     ),
+  },
+  {
+    accessorKey: "name",
+    header: () => <div className="text-left">name</div>,
+    cell: ({ row }) => (
+      <div className="text-left font-medium line-clamp-1">
+        {row.getValue("name")}
+      </div>
+    ),
+  },
+  {
+    accessorKey: "role",
+    header: () => <div className="text-left">role</div>,
+    cell: ({ row }) => {
+      const role = row.getValue("role");
+      let statusColor = "";
+      switch (role) {
+        case "ADMIN":
+          statusColor = "bg-green-500";
+          break;
+        case "USER":
+          statusColor = "bg-yellow-500";
+          break;
+      }
+      return (
+        <Badge variant="outline" className={statusColor}>
+          {row.getValue("role")}
+        </Badge>
+      );
+    },
   },
   {
     accessorKey: "createdAt",

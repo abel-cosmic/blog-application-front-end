@@ -26,7 +26,6 @@ const NewsLetter = () => {
   });
 
   function onSubmit(data: z.infer<typeof subscriptionSchema>) {
-    console.log(data);
     mutate(data, {
       onSuccess: () => {
         form.reset();

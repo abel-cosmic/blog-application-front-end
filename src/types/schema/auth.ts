@@ -26,6 +26,7 @@ export const signUpSchema = z.object({
   password: z.string().min(8, {
     message: "password must be at least 2 characters.",
   }),
+  role: z.enum(["ADMIN", "USER"]).optional(),
 });
 
 export const passwordResetSchema = z.object({

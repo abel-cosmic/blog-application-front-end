@@ -1,10 +1,10 @@
 "use client";
 import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
-import { SubscribersAction } from "../action/subscriber";
-import moment from "moment";
 
-export const subscriberColumns: ColumnDef<subscriberTable>[] = [
+import { RegistrationsAction } from "../action/registration";
+
+export const registrationsColumns: ColumnDef<RegistrationsTable>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -27,6 +27,15 @@ export const subscriberColumns: ColumnDef<subscriberTable>[] = [
     enableHiding: false,
   },
   {
+    accessorKey: "name",
+    header: () => <div className="text-left">name</div>,
+    cell: ({ row }) => (
+      <div className="text-left font-medium line-clamp-1">
+        {row.getValue("email")}
+      </div>
+    ),
+  },
+  {
     accessorKey: "email",
     header: () => <div className="text-left">email</div>,
     cell: ({ row }) => (
@@ -36,11 +45,11 @@ export const subscriberColumns: ColumnDef<subscriberTable>[] = [
     ),
   },
   {
-    accessorKey: "createdAt",
-    header: () => <div className="text-left">created at</div>,
+    accessorKey: "event",
+    header: () => <div className="text-left">event</div>,
     cell: ({ row }) => (
       <div className="text-left font-medium line-clamp-1">
-        {moment(row.getValue("createdAt")).format("YYYY-MM-DD")}
+        {row.getValue("event")}
       </div>
     ),
   },
@@ -48,7 +57,7 @@ export const subscriberColumns: ColumnDef<subscriberTable>[] = [
     id: "actions",
     header: () => <div className="text-left">Actions</div>,
     cell: ({ row }) => {
-      return <SubscribersAction row={row} />;
+      return <RegistrationsAction row={row} />;
     },
   },
 ];

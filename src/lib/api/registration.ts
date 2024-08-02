@@ -1,8 +1,8 @@
-import axios from "axios";
+import axiosInstance from "../axios";
 
 export const getAllRegistrations = async (): Promise<Registration[]> => {
   try {
-    const response = await axios.get("/api/registrations");
+    const response = await axiosInstance.get("/api/registrations");
     return response.data;
   } catch (error) {
     console.error("Error fetching registrations:", error);
@@ -14,7 +14,7 @@ export const getRegistrationById = async (
   id: number
 ): Promise<Registration | null> => {
   try {
-    const response = await axios.get(`/api/registrations/${id}`);
+    const response = await axiosInstance.get(`/api/registrations/${id}`);
     return response.data;
   } catch (error) {
     console.error(`Error fetching registration with id ${id}:`, error);
@@ -24,7 +24,7 @@ export const getRegistrationById = async (
 
 export const deleteRegistrationById = async (id: number): Promise<boolean> => {
   try {
-    await axios.delete(`/api/registrations/${id}`);
+    await axiosInstance.delete(`/api/registrations/${id}`);
     return true;
   } catch (error) {
     console.error(`Error deleting registration with id ${id}:`, error);
@@ -36,7 +36,10 @@ export const createRegistration = async (
   registration: MutateRegistration
 ): Promise<Blog | null> => {
   try {
-    const response = await axios.post("/api/registrations", registration);
+    const response = await axiosInstance.post(
+      "/api/registrations",
+      registration
+    );
     return response.data;
   } catch (error) {
     console.error("Error creating registration:", error);
@@ -49,7 +52,7 @@ export const updateRegistration = async (
   blog: MutateRegistration
 ): Promise<Blog | null> => {
   try {
-    const response = await axios.put(`/api/registrations/${id}`, blog);
+    const response = await axiosInstance.put(`/api/registrations/${id}`, blog);
     return response.data;
   } catch (error) {
     console.error("Error creating registrations:", error);
@@ -62,7 +65,7 @@ export const getRegistrationByUserIdAndEventId = async (
   eventId: number
 ): Promise<Registration | null> => {
   try {
-    const response = await axios.get(
+    const response = await axiosInstance.get(
       `/api/registrations/user/${userId}/event/${eventId}`
     );
     return response.data;

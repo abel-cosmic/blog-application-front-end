@@ -1,10 +1,20 @@
-import { BookCopy, Files, Home, PartyPopper, Users } from "lucide-react";
+import { BookCopy, Files, Home, PartyPopper, User, Users } from "lucide-react";
 
 const sidebarItems = [
   {
     href: "/admin",
     label: "Dashboard",
     icon: Home,
+  },
+  {
+    href: "/admin/admins",
+    label: "Admins",
+    icon: User,
+  },
+  {
+    href: "/admin/subscribers",
+    label: "Subscribers",
+    icon: Users,
   },
   {
     href: "/admin/blogs",
@@ -20,11 +30,6 @@ const sidebarItems = [
     href: "/admin/registrations",
     label: "Registrations",
     icon: BookCopy,
-  },
-  {
-    href: "/admin/subscribers",
-    label: "Subscribers",
-    icon: Users,
   },
 ];
 

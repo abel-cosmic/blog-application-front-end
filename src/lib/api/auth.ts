@@ -4,14 +4,14 @@ import {
   passwordResetSchema,
   signUpSchema,
 } from "@/types/schema/auth";
-import axios from "axios";
 import { z } from "zod";
+import axiosInstance from "../axios";
 
 export interface mutateAuthResponse extends z.infer<typeof loginSchema> {}
 
 export const signUp = async (data: mutateAuthResponse) => {
   try {
-    const response = await axios.post("/api/auth/register", data);
+    const response = await axiosInstance.post("/api/auth/register", data);
     return response.data;
   } catch (error) {
     console.log("Error signing up:", error);
@@ -22,7 +22,7 @@ export const signUp = async (data: mutateAuthResponse) => {
 export interface mutateUserResponse extends z.infer<typeof signUpSchema> {}
 export const signIn = async (data: mutateUserResponse) => {
   try {
-    const response = await axios.post("/api/auth/login", data);
+    const response = await axiosInstance.post("/api/auth/login", data);
     return response.data;
   } catch (error) {
     console.log("Error signing in:", error);
@@ -38,7 +38,7 @@ export const passwordReset = async (
   message: string;
 }> => {
   try {
-    const response = await axios.post("/api/auth/reset-password", data);
+    const response = await axiosInstance.post("/api/auth/reset-password", data);
     return response.data;
   } catch (error) {
     console.log("Error passwordReset in:", error);
@@ -55,7 +55,10 @@ export const forgotPassword = async (
   message: string;
 }> => {
   try {
-    const response = await axios.post("/api/auth/forgot-password", data);
+    const response = await axiosInstance.post(
+      "/api/auth/forgot-password",
+      data
+    );
     return response.data;
   } catch (error) {
     console.log("Error forgotPassword in:", error);

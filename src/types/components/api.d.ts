@@ -23,6 +23,7 @@ type User = {
   id: number;
   email: string;
   name: string;
+  role?: "ADMIN" | "USER";
   createdAt: string;
   updatedAt: string;
 };
@@ -43,6 +44,8 @@ type Registration = {
   eventId: number;
   createdAt: string;
   updatedAt: string;
+  user: User;
+  event: Events;
 };
 
 type MutateRegistration = OmitFields<
