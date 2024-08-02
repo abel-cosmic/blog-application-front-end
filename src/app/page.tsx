@@ -14,6 +14,7 @@ import blogImage5 from "/public/img/blog5.jpg";
 import blogImage6 from "/public/img/blog6.jpg";
 import Footer from "@/components/custom/footer";
 import NewsLetter from "@/components/custom/banner/news-lettter";
+import FAQBanner from "@/components/custom/banner/faq";
 
 export default function Home() {
   useEffect(() => {
@@ -98,7 +99,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 max-md:pt-20">
       <MobileNav />
       <MenuBar />
       <div className="flex flex-col items-center justify-center px-10 gap-8 md:flex-row md:flex-wrap md:gap-4">
@@ -116,7 +117,7 @@ export default function Home() {
         ))}
       </div>
       <NewsLetter />
-
+      <FAQBanner />
       <Footer />
     </div>
   );
