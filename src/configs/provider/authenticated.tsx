@@ -1,22 +1,56 @@
 "use client";
 
-// import LoadingElement from "@/components/custom/loaders";
-// import { useSession } from "next-auth/react";
-// import { useRouter } from "next/navigation";
 import { ReactNode, useEffect } from "react";
-const AuthRedirect = ({ children }: { children: ReactNode }) => {
-  // const { data: session, status } = useSession();
-  // const router = useRouter();
-  // useEffect(() => {
-  //   if (status === "loading") return;
+import { useRouter } from "next/navigation";
+import { toast } from "@/components/ui/use-toast";
+import { jwtDecode } from "jwt-decode";
 
-  //   if (!session) {
-  //     router.push("/");
-  //   }
-  // }, [session, status, router]);
-  // if (status === "loading" || !session) {
-  //   return <LoadingElement />;
-  // }
+const AuthRedirect = ({ children }: { children: ReactNode }) => {
+  const router = useRouter();
+
+  useEffect(() => {
+    const checkAuthorization = () => {
+      // Retrieve token from local storage or cookies
+      const token = localStorage.getItem("token") || ""; // Adjust based on how you store the token
+
+      if (!token) {
+        // No token exists
+        toast({
+          title: "Authorization Error",
+          description: "You are not authorized to view this page.",
+          variant: "destructive",
+        });
+        router.push("/");
+        return;
+      }
+
+      try {
+        // Decode the token
+        const decodedToken: any = jwtDecode(token);
+        console.log(decodedToken);
+        if (decodedToken.role !== "ADMIN") {
+          toast({
+            title: "Authorization Error",
+            description: "You are not authorized to view this page.",
+            variant: "destructive",
+          });
+          router.push("/");
+        }
+      } catch (error) {
+        // Handle token decoding errors
+        toast({
+          title: "Authorization Error",
+          description: "Invalid token.",
+          variant: "destructive",
+        });
+        router.push("/");
+      }
+    };
+
+    checkAuthorization();
+  }, [router]);
+
   return <>{children}</>;
 };
+
 export default AuthRedirect;

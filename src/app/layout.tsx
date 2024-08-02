@@ -4,7 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ReactQueryClientProvider } from "@/configs/provider/react-query-provider";
 import { Toaster } from "@/components/ui/toaster";
-// import AuthRedirect from "@/configs/provider/authenticated";
+import AuthRedirect from "@/configs/provider/authenticated";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -29,14 +29,12 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        {/* <NextAuthClientProvider> */}
-        {/* <AuthRedirect> */}
-        <ReactQueryClientProvider>
-          <Toaster />
-          {children}
-        </ReactQueryClientProvider>
-        {/* </AuthRedirect> */}
-        {/* </NextAuthClientProvider> */}
+        <AuthRedirect>
+          <ReactQueryClientProvider>
+            <Toaster />
+            {children}
+          </ReactQueryClientProvider>
+        </AuthRedirect>
       </body>
     </html>
   );
