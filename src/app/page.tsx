@@ -14,6 +14,7 @@ import blogImage5 from "/public/img/blog5.jpg";
 import blogImage6 from "/public/img/blog6.jpg";
 import Footer from "@/components/custom/footer";
 import NewsLetter from "@/components/custom/banner/news-lettter";
+import FAQBanner from "@/components/custom/banner/faq";
 
 export default function Home() {
   useEffect(() => {
@@ -116,7 +117,7 @@ export default function Home() {
         ))}
       </div>
       <NewsLetter />
-
+      <FAQBanner />
       <Footer />
     </div>
   );
