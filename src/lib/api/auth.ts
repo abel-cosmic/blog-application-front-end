@@ -7,7 +7,7 @@ import {
 import axios from "axios";
 import { z } from "zod";
 
-interface mutateAuthResponse extends z.infer<typeof loginSchema> {}
+export interface mutateAuthResponse extends z.infer<typeof loginSchema> {}
 
 export const signUp = async (data: mutateAuthResponse) => {
   try {
@@ -19,7 +19,7 @@ export const signUp = async (data: mutateAuthResponse) => {
   }
 };
 
-interface mutateUserResponse extends z.infer<typeof signUpSchema> {}
+export interface mutateUserResponse extends z.infer<typeof signUpSchema> {}
 export const signIn = async (data: mutateUserResponse) => {
   try {
     const response = await axios.post("/api/auth/login", data);
@@ -30,7 +30,7 @@ export const signIn = async (data: mutateUserResponse) => {
   }
 };
 
-interface mutatePasswordResetResponse
+export interface mutatePasswordResetResponse
   extends z.infer<typeof passwordResetSchema> {}
 export const passwordReset = async (
   data: mutatePasswordResetResponse
@@ -46,7 +46,7 @@ export const passwordReset = async (
   }
 };
 
-interface mutateForgotPasswordResponse
+export interface mutateForgotPasswordResponse
   extends z.infer<typeof forgotPasswordSchema> {}
 
 export const forgotPassword = async (
