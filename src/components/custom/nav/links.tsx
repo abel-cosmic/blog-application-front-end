@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const NavLinkComponent = ({ name, href }: { name: string; href: string }) => {
   return (
-    <Link href={href} className="hover:underline py-2">
+    <Link href={href} className="hover:underline">
       {name}
     </Link>
   );

@@ -13,6 +13,7 @@ import blogImage4 from "/public/img/blog4.jpg";
 import blogImage5 from "/public/img/blog5.jpg";
 import blogImage6 from "/public/img/blog6.jpg";
 import Footer from "@/components/custom/footer";
+import NewsLetter from "@/components/custom/banner/news-lettter";
 
 export default function Home() {
   useEffect(() => {
@@ -97,10 +98,10 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-6">
       <MobileNav />
       <MenuBar />
-      <div className="flex flex-col items-center justify-center gap-8 md:flex-row md:flex-wrap md:gap-4">
+      <div className="flex flex-col items-center justify-center px-10 gap-8 md:flex-row md:flex-wrap md:gap-4">
         {blogItems.map((item, index) => (
           <BlogCard
             key={index}
@@ -114,6 +115,7 @@ export default function Home() {
           />
         ))}
       </div>
+      <NewsLetter />
 
       <Footer />
     </div>

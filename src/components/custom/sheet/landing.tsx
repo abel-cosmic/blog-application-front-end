@@ -13,14 +13,9 @@ import { Search } from "lucide-react";
 import NavLinkComponent from "../nav/links";
 import logodark from "/public/img/logo-dark.png";
 import Image from "next/image";
+import { links } from "@/configs/objects/nav";
 
 const LandingSheet = () => {
-  const links = [
-    { name: "Blog", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Contact", href: "/contact" },
-    { name: "Privacy Policy", href: "/privacy" },
-  ];
   return (
     <SheetContent className="py-20 flex flex-col gap-2 backdrop-blur-sm bg-white/90">
       <SheetHeader className="flex flex-col gap-2 py-2 items-start">
