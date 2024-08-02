@@ -4,8 +4,3 @@ interface CardComponentProps {
   description: string;
   icon: SVGProps<SVGSVGElement>;
 }
-
-interface EntityStore<T> {
-  entity: T;
-  setEntity: (entity: T) => void;
-}

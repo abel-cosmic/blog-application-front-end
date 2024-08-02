@@ -2,7 +2,7 @@ import { eventSchema } from "@/types/schema/event";
 import axios from "axios";
 import { z } from "zod";
 
-export const getAllEvents = async (): Promise<Event[]> => {
+export const getAllEvents = async (): Promise<Events[]> => {
   try {
     const response = await axios.get("/api/events");
     return response.data;
@@ -33,7 +33,9 @@ export const deleteEventById = async (id: number): Promise<boolean> => {
 };
 
 export interface MutateEvent extends z.infer<typeof eventSchema> {}
-export const createEvent = async (event: MutateEvent): Promise<Blog | null> => {
+export const createEvent = async (
+  event: MutateEvent
+): Promise<Events | null> => {
   try {
     const response = await axios.post("/api/events", event);
     return response.data;

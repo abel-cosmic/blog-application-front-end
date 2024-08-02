@@ -26,7 +26,7 @@ type User = {
   updatedAt: string;
 };
 
-type Event = {
+type Events = {
   id: number;
   title: string;
   description: string;
