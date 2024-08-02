@@ -14,8 +14,14 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { useSignUpMutation } from "@/hooks/auth";
+import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function SignUpForm() {
+  const { mutate, isPending, data: response, isSuccess } = useSignUpMutation();
+  const navigate = useRouter();
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -24,17 +30,30 @@ export default function SignUpForm() {
       password: "",
     },
   });
-
   function onSubmit(data: z.infer<typeof signUpSchema>) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
+    mutate(data, {
+      onSuccess: () => {
+        form.reset();
+        toast({
+          title: "Success",
+          description: "You have successfully sign up  to our blog site.",
+        });
+        navigate.push("/auth/sign-in");
+      },
+      onError: (error) => {
+        toast({
+          title: "Error",
+          description: error.message,
+        });
+      },
     });
   }
+  useEffect(() => {
+    if (response && isSuccess) {
+      localStorage.setItem("token", JSON.stringify(response));
+    }
+  }, [response, isSuccess]);
+
   return (
     <Form {...form}>
       <form
@@ -94,7 +113,7 @@ export default function SignUpForm() {
         />
         <div className="grid gap-4">
           <Button type="submit" className="w-full">
-            Login
+            {isPending ? <Loader2 className="animate-spin" /> : "Sign Up"}
           </Button>
         </div>
         <div className="mt-4 text-center text-sm">

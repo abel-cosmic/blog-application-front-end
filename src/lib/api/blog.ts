@@ -38,7 +38,6 @@ export const createBlog = async (formData: FormData): Promise<Blog | null> => {
     const response = await axiosInstance.post("/api/blogs", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
-        // "Authorization":"JWT "
       },
     });
     return response.data;

@@ -8,7 +8,7 @@ export const blogSchema = z.object({
   content: z
     .string()
     .min(2, { message: "Content must be at least 2 characters." }),
-  image: z.instanceof(File).optional(), // Update schema to handle File instances
+  image: z.instanceof(File).optional(),
   link: z.string().min(2, { message: "Link must be at least 2 characters." }),
   location: z
     .string()

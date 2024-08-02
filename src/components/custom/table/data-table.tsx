@@ -25,7 +25,7 @@ import {
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  DialogContentComponent: React.ReactNode;
+  DialogContentComponent?: React.ReactNode;
 }
 
 export function DataTable<TData, TValue>({
@@ -44,14 +44,16 @@ export function DataTable<TData, TValue>({
     <div className="flex flex-col  items-end justify-end w-full">
       <CardContent className="flex relative flex-col gap-4  items-end justify-end  max-md:p-0 mx-md:justify-between w-full  max-md:items-start">
         <div className="flex flex-row items-end gap-4 justify-end w-fit mb-4 absolute -top-12 right-10">
-          <Dialog>
-            <DialogTrigger className="self-end">
-              <Button>Create</Button>
-            </DialogTrigger>
-            <DialogContent className="p-4 px-8">
-              {DialogContentComponent}
-            </DialogContent>
-          </Dialog>
+          {DialogContentComponent && (
+            <Dialog>
+              <DialogTrigger className="self-end">
+                <Button>Create</Button>
+              </DialogTrigger>
+              <DialogContent className="p-4 px-8">
+                {DialogContentComponent}
+              </DialogContent>
+            </Dialog>
+          )}
           <DataTableViewOptions table={table} />
         </div>
         <Table>

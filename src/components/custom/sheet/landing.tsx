@@ -14,8 +14,10 @@ import NavLinkComponent from "../nav/links";
 import logodark from "/public/img/logo-dark.png";
 import Image from "next/image";
 import { links } from "@/configs/objects/nav";
+import { useRouter } from "next/navigation";
 
 const LandingSheet = () => {
+  const navigate = useRouter();
   return (
     <SheetContent className="py-20 flex flex-col gap-2 backdrop-blur-sm bg-white/90">
       <SheetHeader className="flex flex-col gap-2 py-2 items-start">
@@ -46,12 +48,25 @@ const LandingSheet = () => {
       </SheetDescription>
       <SheetFooter className="flex flex-col gap-2">
         <SheetClose asChild>
-          <Button type="submit" variant="outline">
+          <Button
+            type="submit"
+            variant="outline"
+            onClick={() => {
+              navigate.push("/auth/sign-in");
+            }}
+          >
             Sign In
           </Button>
         </SheetClose>
         <SheetClose asChild>
-          <Button type="submit">Sign Up</Button>
+          <Button
+            type="submit"
+            onClick={() => {
+              navigate.push("/auth/sign-up");
+            }}
+          >
+            Sign Up
+          </Button>
         </SheetClose>
       </SheetFooter>
     </SheetContent>

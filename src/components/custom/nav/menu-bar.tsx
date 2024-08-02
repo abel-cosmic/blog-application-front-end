@@ -44,10 +44,23 @@ const MenuBar = () => {
         </MenubarMenu>
       </div>
       <div className="flex flex-row w-60 gap-4">
-        <Button variant="outline" className="w-full">
+        <Button
+          variant="outline"
+          className="w-full"
+          onClick={() => {
+            navigate.push("/auth/sign-up");
+          }}
+        >
           Sign In
         </Button>
-        <Button className="w-full">Sign Up</Button>
+        <Button
+          className="w-full"
+          onClick={() => {
+            navigate.push("/auth/sign-up");
+          }}
+        >
+          Sign Up
+        </Button>
       </div>
     </Menubar>
   );
