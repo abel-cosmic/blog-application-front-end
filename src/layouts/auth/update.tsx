@@ -9,7 +9,7 @@ export function SecurityTabs() {
       defaultValue="account"
       className="w-1/3 max-md:w-full max-md:mx-auto ml-10"
     >
-      <TabsList className="grid w-full grid-cols-2">
+      <TabsList className="grid w-full grid-cols-2 gap-4">
         <TabsTrigger value="account">Account</TabsTrigger>
         <TabsTrigger value="password">Password</TabsTrigger>
       </TabsList>
