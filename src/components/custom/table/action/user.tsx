@@ -12,22 +12,22 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { MoreHorizontal, Eye, Edit, Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useDeleteBlogByIdMutation } from "@/hooks/blog";
 import { toast } from "@/components/ui/use-toast";
+import { useDeleteUserByIdMutation } from "@/hooks/user";
 
-export const BlogAction = ({ row }: { row: Row<any> }) => {
-  const blog = row.original;
+export const UserAction = ({ row }: { row: Row<any> }) => {
+  const user = row.original;
   const router = useRouter();
-  const { mutate: deleteBlog } = useDeleteBlogByIdMutation(blog.id);
+  const { mutate: deleteUser } = useDeleteUserByIdMutation(user.id);
 
   const handleDelete = () => {
-    deleteBlog(null, {
+    deleteUser(null, {
       onSuccess: () => {
         toast({
-          title: "Blog deleted",
+          title: "user deleted",
           description: (
             <div>
-              blog <strong>{blog.id}</strong> has been deleted
+              blog <strong>{user.id}</strong> has been deleted
             </div>
           ),
         });
@@ -37,7 +37,7 @@ export const BlogAction = ({ row }: { row: Row<any> }) => {
           title: "Error",
           description: (
             <div>
-              An error occurred while deleting blog <strong>{blog.id}</strong>
+              An error occurred while deleting user <strong>{user.id}</strong>
             </div>
           ),
         });
@@ -56,14 +56,14 @@ export const BlogAction = ({ row }: { row: Row<any> }) => {
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
         <DropdownMenuItem
-          onClick={() => router.push(`/dashboard/blogs/view/${blog.id}`)}
+          onClick={() => router.push(`/dashboard/users/view/${user.id}`)}
         >
           <Eye className="mr-2 h-4 w-4 text-blue-500" />
           View
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
-          onClick={() => router.push(`/dashboard/blogs/edit/${blog.id}`)}
+          onClick={() => router.push(`/dashboard/users/edit/${user.id}`)}
         >
           <Edit className="mr-2 h-4 w-4 text-green-500" />
           Edit

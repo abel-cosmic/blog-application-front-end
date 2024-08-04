@@ -10,22 +10,13 @@ const AuthRedirect = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const checkAuthorization = () => {
-      // Retrieve token from local storage or cookies
-      const token = localStorage.getItem("token") || ""; // Adjust based on how you store the token
-
+      const token = localStorage.getItem("token") || "";
       if (!token) {
-        // No token exists
-        toast({
-          title: "Authorization Error",
-          description: "You are not authorized to view this page.",
-          variant: "destructive",
-        });
         router.push("/");
         return;
       }
 
       try {
-        // Decode the token
         const decodedToken: any = jwtDecode(token);
         console.log(decodedToken);
         if (decodedToken.role !== "ADMIN") {
@@ -37,7 +28,6 @@ const AuthRedirect = ({ children }: { children: ReactNode }) => {
           router.push("/");
         }
       } catch (error) {
-        // Handle token decoding errors
         toast({
           title: "Authorization Error",
           description: "Invalid token.",
@@ -46,7 +36,6 @@ const AuthRedirect = ({ children }: { children: ReactNode }) => {
         router.push("/");
       }
     };
-
     checkAuthorization();
   }, [router]);
 

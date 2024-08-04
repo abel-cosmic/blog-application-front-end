@@ -12,36 +12,40 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { MoreHorizontal, Eye, Edit, Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
-// import { toast } from "@/components/ui/use-toast";
+import { useDeleteRegistrationByIdMutation } from "@/hooks/registration";
+import { toast } from "@/components/ui/use-toast";
 
 export const RegistrationsAction = ({ row }: { row: Row<any> }) => {
-  const lease = row.original;
+  const registration = row.original;
   const router = useRouter();
-  // const { mutate: deleteBlog } = useDeleteBlogMutation(lease.id);
+  const { mutate: deleteRegistration } = useDeleteRegistrationByIdMutation(
+    registration.id
+  );
 
   const handleDelete = () => {
-    // deleteBlog(null, {
-    //   onSuccess: () => {
-    //     toast({
-    //       title: "Lease deleted",
-    //       description: (
-    //         <div>
-    //           Lease <strong>{lease.id}</strong> has been deleted
-    //         </div>
-    //       ),
-    //     });
-    //   },
-    //   onError: () => {
-    //     toast({
-    //       title: "Error",
-    //       description: (
-    //         <div>
-    //           An error occurred while deleting lease <strong>{lease.id}</strong>
-    //         </div>
-    //       ),
-    //     });
-    //   },
-    // });
+    deleteRegistration(null, {
+      onSuccess: () => {
+        toast({
+          title: "subscriber deleted",
+          description: (
+            <div>
+              registration <strong>{registration.id}</strong> has been deleted
+            </div>
+          ),
+        });
+      },
+      onError: () => {
+        toast({
+          title: "Error",
+          description: (
+            <div>
+              An error occurred while deleting registration{" "}
+              <strong>{registration.id}</strong>
+            </div>
+          ),
+        });
+      },
+    });
   };
 
   return (
@@ -55,14 +59,18 @@ export const RegistrationsAction = ({ row }: { row: Row<any> }) => {
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
         <DropdownMenuItem
-          onClick={() => router.push(`/dashboard/lease/view/${lease.id}`)}
+          onClick={() =>
+            router.push(`/dashboard/registrations/view/${registration.id}`)
+          }
         >
           <Eye className="mr-2 h-4 w-4 text-blue-500" />
           View
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
-          onClick={() => router.push(`/dashboard/lease/edit/${lease.id}`)}
+          onClick={() =>
+            router.push(`/dashboard/registrations/edit/${registration.id}`)
+          }
         >
           <Edit className="mr-2 h-4 w-4 text-green-500" />
           Edit

@@ -44,6 +44,7 @@ export default function SignUpForm() {
         toast({
           title: "Error",
           description: error.message,
+          variant: "destructive",
         });
       },
     });

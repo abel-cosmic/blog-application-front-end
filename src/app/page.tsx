@@ -13,7 +13,7 @@ import { useGetAllBlogQuery } from "@/hooks/blog";
 import { blogItems } from "@/configs/objects/blog";
 
 export default function Home() {
-  // const { data } = useGetAllBlogQuery();
+  const { data } = useGetAllBlogQuery();
   useEffect(() => {
     const lenis = new Lenis();
     lenis.on("scroll", (e: any) => {
@@ -33,8 +33,8 @@ export default function Home() {
       <MobileNav />
       <MenuBar />
       <div className="flex flex-col items-center justify-center px-10 gap-8 md:flex-row md:flex-wrap md:gap-4">
-        {blogItems && blogItems.length > 0 ? (
-          blogItems.map((item, index) => (
+        {data && blogItems.length > 0 ? (
+          data.map((item, index) => (
             <BlogCard
               key={index}
               title={item.title}

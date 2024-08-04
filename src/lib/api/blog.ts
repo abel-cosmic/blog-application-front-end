@@ -38,7 +38,7 @@ export const createBlog = async (formData: FormData): Promise<Blog | null> => {
   try {
     const token = localStorage.getItem("token") || "";
     const decodedToken: any = jwtDecode(token);
-    formData.append("authorId", decodedToken.id);
+    // formData.append("authorId", decodedToken.id);
     const response = await axiosInstance.post("/api/blogs", formData, {
       headers: {
         "Content-Type": "multipart/form-data",

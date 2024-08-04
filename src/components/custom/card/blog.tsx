@@ -21,6 +21,9 @@ const BlogCard = ({
             <Image
               src={image}
               alt="blog"
+              width={2000}
+              height={2000}
+              quality={100}
               className="h-60 w-full object-cover rounded-t-lg transition duration-300 ease-in-out hover:scale-110"
             />
           </div>

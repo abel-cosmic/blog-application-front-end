@@ -46,7 +46,12 @@ export default function SignUpAdminForm() {
         form.reset();
         toast({
           title: "Success",
-          description: "You have successfully subscribed to our newsletter.",
+          description: (
+            <div>
+              <p>Admin created successfully.</p>
+              <p>Password: {initialPassword}</p>
+            </div>
+          ),
         });
       },
       onError: (error) => {

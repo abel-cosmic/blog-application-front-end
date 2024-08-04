@@ -34,21 +34,13 @@ export default function LoginForm() {
   async function onSubmit(data: z.infer<typeof loginSchema>) {
     mutate(data, {
       onSuccess: (response) => {
-        // Assuming response contains the token
         const { token } = response;
-
-        // Decode the token
         const decodedToken: any = jwtDecode(token);
-
-        // Check the role
         if (decodedToken.role === "ADMIN") {
-          // Redirect to admin route if role is ADMIN
           navigate.push("/admin");
         } else {
-          // Redirect to the default route
           navigate.push("/");
         }
-
         form.reset();
         toast({
           title: "Success",
@@ -59,6 +51,7 @@ export default function LoginForm() {
         toast({
           title: "Error",
           description: error.message,
+          variant: "destructive",
         });
       },
     });

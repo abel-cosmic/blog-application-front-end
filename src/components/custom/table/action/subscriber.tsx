@@ -12,36 +12,40 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { MoreHorizontal, Eye, Edit, Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
-// import { toast } from "@/components/ui/use-toast";
+import { useDeleteSubscriberByIdMutation } from "@/hooks/subscriber";
+import { toast } from "@/components/ui/use-toast";
 
 export const SubscribersAction = ({ row }: { row: Row<any> }) => {
-  const lease = row.original;
+  const subscribers = row.original;
   const router = useRouter();
-  // const { mutate: deleteBlog } = useDeleteBlogMutation(lease.id);
+  const { mutate: deleteSubscriber } = useDeleteSubscriberByIdMutation(
+    subscribers.id
+  );
 
   const handleDelete = () => {
-    // deleteBlog(null, {
-    //   onSuccess: () => {
-    //     toast({
-    //       title: "Lease deleted",
-    //       description: (
-    //         <div>
-    //           Lease <strong>{lease.id}</strong> has been deleted
-    //         </div>
-    //       ),
-    //     });
-    //   },
-    //   onError: () => {
-    //     toast({
-    //       title: "Error",
-    //       description: (
-    //         <div>
-    //           An error occurred while deleting lease <strong>{lease.id}</strong>
-    //         </div>
-    //       ),
-    //     });
-    //   },
-    // });
+    deleteSubscriber(null, {
+      onSuccess: () => {
+        toast({
+          title: "subscriber deleted",
+          description: (
+            <div>
+              subscribers <strong>{subscribers.id}</strong> has been deleted
+            </div>
+          ),
+        });
+      },
+      onError: () => {
+        toast({
+          title: "Error",
+          description: (
+            <div>
+              An error occurred while deleting subscribers{" "}
+              <strong>{subscribers.id}</strong>
+            </div>
+          ),
+        });
+      },
+    });
   };
 
   return (
@@ -55,14 +59,18 @@ export const SubscribersAction = ({ row }: { row: Row<any> }) => {
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
         <DropdownMenuItem
-          onClick={() => router.push(`/dashboard/lease/view/${lease.id}`)}
+          onClick={() =>
+            router.push(`/dashboard/subscribers/view/${subscribers.id}`)
+          }
         >
           <Eye className="mr-2 h-4 w-4 text-blue-500" />
           View
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
-          onClick={() => router.push(`/dashboard/lease/edit/${lease.id}`)}
+          onClick={() =>
+            router.push(`/dashboard/subscribers/edit/${subscribers.id}`)
+          }
         >
           <Edit className="mr-2 h-4 w-4 text-green-500" />
           Edit

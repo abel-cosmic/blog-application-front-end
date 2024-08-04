@@ -27,7 +27,7 @@ export const useCreateBlogMutation = () => {
     mutationFn: createBlog,
     onSuccess: () => (
       queryClient.invalidateQueries({ queryKey: ["getAllBlog"] }),
-      queryClient.invalidateQueries({ queryKey: ["getAllBlog"] })
+      queryClient.invalidateQueries({ queryKey: ["getBlogById"] })
     ),
   });
 };
@@ -39,7 +39,7 @@ export const useUpdateBlogMutation = (id: number) => {
     mutationFn: (data: mutateBlogResponse) => updateBlog(id, data),
     onSuccess: () => (
       queryClient.invalidateQueries({ queryKey: ["getAllBlog"] }),
-      queryClient.invalidateQueries({ queryKey: ["getAllBlog"] })
+      queryClient.invalidateQueries({ queryKey: ["getBlogById"] })
     ),
   });
 };
@@ -51,7 +51,7 @@ export const useDeleteBlogByIdMutation = (id: number) => {
     mutationFn: () => deleteBlogById(id),
     onSuccess: () => (
       queryClient.invalidateQueries({ queryKey: ["getAllBlog"] }),
-      queryClient.invalidateQueries({ queryKey: ["getAllBlog"] })
+      queryClient.invalidateQueries({ queryKey: ["getBlogById"] })
     ),
   });
 };

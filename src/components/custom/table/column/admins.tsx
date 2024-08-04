@@ -1,9 +1,9 @@
 "use client";
 import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
-import { SubscribersAction } from "../action/subscriber";
 import { Badge } from "@/components/ui/badge";
 import moment from "moment";
+import { UserAction } from "../action/user";
 
 export const adminsColumns: ColumnDef<AdminsTable>[] = [
   {
@@ -79,7 +79,7 @@ export const adminsColumns: ColumnDef<AdminsTable>[] = [
     id: "actions",
     header: () => <div className="text-left">Actions</div>,
     cell: ({ row }) => {
-      return <SubscribersAction row={row} />;
+      return <UserAction row={row} />;
     },
   },
 ];

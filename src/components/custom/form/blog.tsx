@@ -39,7 +39,6 @@ export function BlogForm() {
   });
 
   const onSubmit = (data: BlogFormInputs) => {
-    // Create FormData object to handle file upload
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("description", data.description);
@@ -59,8 +58,6 @@ export function BlogForm() {
     if (selectedFile) {
       formData.append("image", selectedFile);
     }
-
-    // Use mutation hook to create blog
     createBlog(formData, {
       onSuccess: () => {
         form.reset();
@@ -72,8 +69,8 @@ export function BlogForm() {
       onError: (error: any) => {
         toast({
           title: "Error",
-          description:
-            error?.message || "An error occurred while creating the blog post.",
+          description: error?.message,
+          variant: "destructive",
         });
       },
     });
