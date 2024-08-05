@@ -36,7 +36,7 @@ export const useUpdateBlogMutation = (id: number) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["updateBlog", id],
-    mutationFn: (data: mutateBlogResponse) => updateBlog(id, data),
+    mutationFn: (data: FormData) => updateBlog(id, data),
     onSuccess: () => (
       queryClient.invalidateQueries({ queryKey: ["getAllBlog"] }),
       queryClient.invalidateQueries({ queryKey: ["getBlogById"] })
