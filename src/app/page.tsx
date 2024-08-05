@@ -36,6 +36,7 @@ export default function Home() {
         {data && blogItems.length > 0 ? (
           data.map((item, index) => (
             <BlogCard
+              id={item.id}
               key={index}
               title={item.title}
               description={item.description}

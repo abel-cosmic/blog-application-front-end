@@ -90,7 +90,6 @@ export function Sidebar() {
             </div>
           </div>
         </div>
-        s
       </div>
     </div>
   );

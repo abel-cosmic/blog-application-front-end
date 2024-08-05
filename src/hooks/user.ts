@@ -27,7 +27,7 @@ export const useCreateUserMutation = () => {
     mutationFn: createUser,
     onSuccess: () => (
       queryClient.invalidateQueries({ queryKey: ["getAllUser"] }),
-      queryClient.invalidateQueries({ queryKey: ["getAllUser"] })
+      queryClient.invalidateQueries({ queryKey: ["getUserById"] })
     ),
   });
 };
@@ -39,7 +39,7 @@ export const useUpdateUserMutation = (id: number) => {
     mutationFn: (data: mutateUserResponse) => updateUser(id, data),
     onSuccess: () => (
       queryClient.invalidateQueries({ queryKey: ["getAllUser"] }),
-      queryClient.invalidateQueries({ queryKey: ["getAllUser"] })
+      queryClient.invalidateQueries({ queryKey: ["getUserById"] })
     ),
   });
 };
@@ -51,7 +51,7 @@ export const useDeleteUserByIdMutation = (id: number) => {
     mutationFn: () => deleteUserById(id),
     onSuccess: () => (
       queryClient.invalidateQueries({ queryKey: ["getAllUser"] }),
-      queryClient.invalidateQueries({ queryKey: ["getAllUser"] })
+      queryClient.invalidateQueries({ queryKey: ["getUserById"] })
     ),
   });
 };

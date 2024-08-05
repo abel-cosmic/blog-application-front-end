@@ -56,14 +56,14 @@ export const UserAction = ({ row }: { row: Row<any> }) => {
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
         <DropdownMenuItem
-          onClick={() => router.push(`/dashboard/users/view/${user.id}`)}
+          onClick={() => router.push(`/admin/admins/view/${user.id}`)}
         >
           <Eye className="mr-2 h-4 w-4 text-blue-500" />
           View
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
-          onClick={() => router.push(`/dashboard/users/edit/${user.id}`)}
+          onClick={() => router.push(`/admin/admins/edit/${user.id}`)}
         >
           <Edit className="mr-2 h-4 w-4 text-green-500" />
           Edit

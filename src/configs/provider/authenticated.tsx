@@ -1,15 +1,21 @@
 "use client";
 
 import { ReactNode, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { toast } from "@/components/ui/use-toast";
 import { jwtDecode } from "jwt-decode";
 
 const AuthRedirect = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const checkAuthorization = () => {
+      // Only perform the check if the current route is an admin route
+      if (!pathname.startsWith("/admin")) {
+        return;
+      }
+
       const token = localStorage.getItem("token") || "";
       if (!token) {
         router.push("/");
@@ -18,7 +24,6 @@ const AuthRedirect = ({ children }: { children: ReactNode }) => {
 
       try {
         const decodedToken: any = jwtDecode(token);
-        console.log(decodedToken);
         if (decodedToken.role !== "ADMIN") {
           toast({
             title: "Authorization Error",
@@ -37,8 +42,9 @@ const AuthRedirect = ({ children }: { children: ReactNode }) => {
       }
     };
     checkAuthorization();
-  }, [router]);
+  }, [pathname, router]);
 
   return <>{children}</>;
 };
+
 export default AuthRedirect;

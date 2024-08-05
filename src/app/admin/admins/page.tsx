@@ -1,11 +1,8 @@
 "use client";
-
-import SignUpAdminForm from "@/components/custom/form/admin";
-import { BlogForm } from "@/components/custom/form/blog";
+import CreateAdminForm from "@/components/custom/form/admin/create";
 import Breadcrumbs from "@/components/custom/nav/bread-crumbs";
 import { adminsColumns } from "@/components/custom/table/column/admins";
 import { DataTable } from "@/components/custom/table/data-table";
-import { blogItems } from "@/configs/objects/blog";
 import { useGetAllUserQuery } from "@/hooks/user";
 import { useUserStore } from "@/store/user";
 import { useEffect } from "react";
@@ -24,7 +21,7 @@ export default function BlogPage() {
       <DataTable
         columns={adminsColumns}
         data={entity}
-        DialogContentComponent={<SignUpAdminForm />}
+        DialogContentComponent={<CreateAdminForm />}
       />
     </aside>
   );

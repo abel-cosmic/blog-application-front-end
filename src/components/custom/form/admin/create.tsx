@@ -26,7 +26,7 @@ const generateRandomPassword = () => {
   return password;
 };
 
-export default function SignUpAdminForm() {
+export default function CreateAdminForm() {
   const { mutate, isPending } = useSignUpMutation();
   const initialPassword = generateRandomPassword();
   const form = useForm<z.infer<typeof signUpSchema>>({

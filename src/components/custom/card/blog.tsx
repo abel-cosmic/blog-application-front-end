@@ -10,6 +10,7 @@ const BlogCard = ({
   content,
   image,
   link,
+  id,
   location,
   date,
 }) => {
@@ -36,9 +37,14 @@ const BlogCard = ({
           </div>
           <p className=" font-light line-clamp-1">{description}</p>
           <p className="text-sm  line-clamp-3">{content}</p>
+          <p>
+            <Link href={link} className="hover:underline hover:cursor-pointer">
+              {link}
+            </Link>
+          </p>
 
           <Link
-            href={link}
+            href={`/blog/${id}`}
             className="flex flex-row gap-2 items-center hover:underline hover:gap-4 ease-linear transition-all text-sm"
           >
             Read More <ArrowRight />

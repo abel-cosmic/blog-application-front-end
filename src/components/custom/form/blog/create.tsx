@@ -22,7 +22,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 
 type BlogFormInputs = z.infer<typeof blogSchema>;
 
-export function BlogForm() {
+export function CreateBlogForm() {
   const { mutate: createBlog, isPending } = useCreateBlogMutation();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 

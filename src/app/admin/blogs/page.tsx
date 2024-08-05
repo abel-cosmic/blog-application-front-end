@@ -1,6 +1,6 @@
 "use client";
 
-import { BlogForm } from "@/components/custom/form/blog";
+import { CreateBlogForm } from "@/components/custom/form/blog/create";
 import Breadcrumbs from "@/components/custom/nav/bread-crumbs";
 import { blogColumns } from "@/components/custom/table/column/blog";
 import { DataTable } from "@/components/custom/table/data-table";
@@ -22,7 +22,7 @@ export default function BlogPage() {
       <DataTable
         columns={blogColumns}
         data={entity}
-        DialogContentComponent={<BlogForm />}
+        DialogContentComponent={<CreateBlogForm />}
       />
     </aside>
   );
