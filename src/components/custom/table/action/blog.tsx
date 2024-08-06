@@ -56,14 +56,14 @@ export const BlogAction = ({ row }: { row: Row<any> }) => {
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
         <DropdownMenuItem
-          onClick={() => router.push(`/dashboard/blogs/view/${blog.id}`)}
+          onClick={() => router.push(`/admin/blogs/view/${blog.id}`)}
         >
           <Eye className="mr-2 h-4 w-4 text-blue-500" />
           View
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
-          onClick={() => router.push(`/dashboard/blogs/edit/${blog.id}`)}
+          onClick={() => router.push(`/admin/blogs/edit/${blog.id}`)}
         >
           <Edit className="mr-2 h-4 w-4 text-green-500" />
           Edit

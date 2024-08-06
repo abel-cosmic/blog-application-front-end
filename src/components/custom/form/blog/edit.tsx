@@ -15,7 +15,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { toast } from "@/components/ui/use-toast";
-import { useCreateBlogMutation } from "@/hooks/blog";
+import {
+  useCreateBlogMutation,
+  useGetBlogByIdQuery,
+  useUpdateBlogMutation,
+} from "@/hooks/blog";
 import { Loader2 } from "lucide-react";
 import { blogSchema } from "@/types/schema/blog";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -26,22 +30,24 @@ import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
+import Image from "next/image";
 
 type BlogFormInputs = z.infer<typeof blogSchema>;
 
-export function CreateBlogForm() {
-  const { mutate: createBlog, isPending } = useCreateBlogMutation();
+export function EditBlogForm({ id }: { id: number }) {
+  const { data } = useGetBlogByIdQuery(id);
+  const { mutate: createBlog, isPending } = useUpdateBlogMutation(id);
   const [files, setFiles] = useState<any[]>([]);
 
   const form = useForm<BlogFormInputs>({
     resolver: zodResolver(blogSchema),
     defaultValues: {
-      title: "",
-      description: "",
-      content: "",
-      link: "",
-      location: "",
-      date: "",
+      title: data?.title,
+      description: data?.description,
+      content: data?.content,
+      link: data?.link,
+      location: data?.location,
+      date: data?.date,
     },
   });
 
@@ -54,15 +60,6 @@ export function CreateBlogForm() {
     formData.append("link", data.link);
     formData.append("location", data.location);
     formData.append("date", data.date);
-    console.log("data", {
-      title: data.title,
-      description: data.description,
-      content: data.content,
-      link: data.link,
-      location: data.location,
-      date: data.date,
-      img: selectedFile,
-    });
     if (selectedFile) {
       formData.append("image", selectedFile);
     }
@@ -168,6 +165,13 @@ export function CreateBlogForm() {
                 <FormMessage />
               </FormItem>
             )}
+          />
+          <Image
+            src={data?.image}
+            alt={data?.title}
+            width={10000}
+            height={10000}
+            className="w-full h-fit"
           />
           <FilePond
             files={files}

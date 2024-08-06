@@ -36,9 +36,6 @@ export const deleteBlogById = async (id: number): Promise<boolean> => {
 export interface mutateBlogResponse extends z.infer<typeof blogSchema> {}
 export const createBlog = async (formData: FormData): Promise<Blog | null> => {
   try {
-    const token = localStorage.getItem("token") || "";
-    const decodedToken: any = jwtDecode(token);
-    // formData.append("authorId", decodedToken.id);
     const response = await axiosInstance.post("/api/blogs", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -52,10 +49,10 @@ export const createBlog = async (formData: FormData): Promise<Blog | null> => {
 };
 export const updateBlog = async (
   id: number,
-  data: mutateBlogResponse
+  formData: FormData
 ): Promise<Blog | null> => {
   try {
-    const response = await axiosInstance.put(`/api/blog/${id}`, data);
+    const response = await axiosInstance.put(`/api/blog/${id}`, formData);
     return response.data;
   } catch (error) {
     console.error("Error creating blog:", error);
