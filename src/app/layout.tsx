@@ -29,12 +29,12 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        {/* <AuthRedirect> */}
-        <ReactQueryClientProvider>
-          <Toaster />
-          {children}
-        </ReactQueryClientProvider>
-        {/* </AuthRedirect> */}
+        <AuthRedirect>
+          <ReactQueryClientProvider>
+            <Toaster />
+            {children}
+          </ReactQueryClientProvider>
+        </AuthRedirect>
       </body>
     </html>
   );
